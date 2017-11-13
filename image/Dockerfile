@@ -1,4 +1,4 @@
-FROM robobeerun/redmine:v3.4.3-passenger-r2
+FROM robobeerun/redmine:v3.4.3-passenger-r3
 LABEL maintainer "Erwin Mueller <erwin.mueller@deventm.com>"
 
 # Install plugins and themes.
