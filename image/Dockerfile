@@ -1,8 +1,15 @@
-FROM robobeerun/redmine:v3.4.3-passenger-r3
+FROM robobeerun/redmine:v3.4.3-passenger-r4
 LABEL maintainer "Erwin Mueller <erwin.mueller@deventm.com>"
 
-# Install plugins and themes.
+USER root
 
+ADD rootfs/ /
+
+RUN set -x \
+  && chown ${WEB_USER}.${WEB_USER} -R /usr/local/bundle
+
+USER ${WEB_USER}
+  
 RUN set -x \
   && src="https://www.dropbox.com/s/klxi6tqhxjy7vxw/redmine_people-1_3_2-light.zip?dl=0" \
   && hash="45a251fbb0cb492e8c3e191e50678cdd337e9de92b719ff1735f71697cbcff55" \
@@ -27,7 +34,7 @@ RUN set -x \
   && name="a1_theme" \
   && /install-redmine-theme.sh "$src" "$name" "$hash" downloadOnly
 
-ADD rootfs/ /tmp/
-  
 RUN set -x \
-  && bash -x /tmp/insert-piwik.sh
+  && bash -x /insert-piwik.sh
+
+ENV REDMINE_SYNC_BUNDLES="false"

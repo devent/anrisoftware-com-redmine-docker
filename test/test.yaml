@@ -17,7 +17,6 @@ services:
       - mariadb
     volumes:
       - "./root/html:/var/www/html"
-      - "./root/bundle:/usr/local/bundle"
       - "./redmine-in:/redmine-in"
 
   mariadb:
