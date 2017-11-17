@@ -1,4 +1,4 @@
-FROM robobeerun/redmine:v3.4.3-passenger-r4
+FROM robobeerun/redmine:v3.4.3-puma-r1
 LABEL maintainer "Erwin Mueller <erwin.mueller@deventm.com>"
 
 USER root
@@ -36,5 +36,3 @@ RUN set -x \
 
 RUN set -x \
   && bash -x /insert-piwik.sh
-
-ENV REDMINE_SYNC_BUNDLES="false"

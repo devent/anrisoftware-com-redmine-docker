@@ -5,7 +5,7 @@ services:
   redmine:
     image: erwin82/redmine:latest
     ports:
-      - 9090:3000
+      - 3000:3000
     environment:
       DEBUG: "true"
       REDMINE_DB_MYSQL: "mariadb"
@@ -19,6 +19,16 @@ services:
       - "./root/html:/var/www/html"
       - "./redmine-in:/redmine-in"
 
+  nginx:
+    image: robobeerun/nginx:v1.13.6-r2
+    ports:
+      - 8080:8080
+    links:
+      - redmine
+    volumes:
+      - "./root/html:/var/www/html"
+      - "./nginx-in:/nginx-in"
+
   mariadb:
     image: bitnami/mariadb:latest
     environment:
@@ -28,4 +38,3 @@ services:
       MARIADB_DATABASE: "anrisprojects"
     volumes:
       - "./root/db:/bitnami/mariadb"
-
