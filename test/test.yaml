@@ -8,33 +8,20 @@ services:
       - 3000:3000
     environment:
       DEBUG: "true"
-      REDMINE_DB_MYSQL: "mariadb"
-      REDMINE_DB_USERNAME: "anrisprojects"
-      REDMINE_DB_DATABASE: "anrisprojects"
-      REDMINE_DB_PASSWORD: "WohCh4co0waorees9nechaezuagoz4ai"
       REDMINE_PLUGINS_MIGRATE: "true"
     links:
-      - mariadb
+      - "postgres:db"
     volumes:
       - "./root/html:/var/www/html"
       - "./redmine-in:/redmine-in"
 
-  nginx:
-    image: robobeerun/nginx:v1.13.6-r2
-    ports:
-      - 8080:8080
-    links:
-      - redmine
-    volumes:
-      - "./root/html:/var/www/html"
-      - "./nginx-in:/nginx-in"
-
-  mariadb:
-    image: bitnami/mariadb:latest
+  postgres:
+    image: centos/postgresql-96-centos7:9.6
     environment:
-      ALLOW_EMPTY_PASSWORD: "yes"
-      MARIADB_USER: "anrisprojects"
-      MARIADB_PASSWORD: "WohCh4co0waorees9nechaezuagoz4ai"
-      MARIADB_DATABASE: "anrisprojects"
+      PGCTLTIMEOUT: "300"
+      POSTGRESQL_USER: "anrisprojects"
+      POSTGRESQL_PASSWORD: "WohCh4co0waorees9nechaezuagoz4ai"
+      POSTGRESQL_DATABASE: "anrisprojects"
+      POSTGRESQL_ADMIN_PASSWORD: "yae2eij0mahyeekiochoebaishieCohZ"
     volumes:
-      - "./root/db:/bitnami/mariadb"
+      - "./root/db:/var/lib/pgsql/data"
