@@ -1,15 +1,6 @@
-FROM robobeerun/redmine:v3.4.3-puma-r1
+FROM robobeerun/redmine:v3.4.3-puma-r2
 LABEL maintainer "Erwin Mueller <erwin.mueller@deventm.com>"
 
-USER root
-
-ADD rootfs/ /
-
-RUN set -x \
-  && chown ${WEB_USER}.${WEB_USER} -R /usr/local/bundle
-
-USER ${WEB_USER}
-  
 RUN set -x \
   && src="https://www.dropbox.com/s/klxi6tqhxjy7vxw/redmine_people-1_3_2-light.zip?dl=0" \
   && hash="45a251fbb0cb492e8c3e191e50678cdd337e9de92b719ff1735f71697cbcff55" \
@@ -33,6 +24,3 @@ RUN set -x \
   && hash="a2d9b8f9c1a723241150924516ca461c64553c13eb81a9b06c683b46b984f84a" \
   && name="a1_theme" \
   && /install-redmine-theme.sh "$src" "$name" "$hash" downloadOnly
-
-RUN set -x \
-  && bash -x /insert-piwik.sh
