@@ -29,4 +29,8 @@ setup:
 	sudo chown 26.26 -R "root/db/userdata"; \
 	sudo chmod u=rwX-s,g=-s,o-s -R "root/db/userdata"; \
 	fi
+	if [ -d "root/html" ]; then \
+	sudo chown 999.999 -R "root/html"; \
+	sudo chmod u=rwX-s,g=-s,o-s -R "root/html"; \
+	fi
 .PHONY: setup

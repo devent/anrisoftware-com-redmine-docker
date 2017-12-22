@@ -10,10 +10,17 @@ services:
       DEBUG: "true"
       REDMINE_PLUGINS_MIGRATE: "true"
     links:
-      - "postgres:db"
+      - "pgbouncer:db"
     volumes:
       - "./root/html:/var/www/html"
       - "./redmine-in:/redmine-in"
+
+  pgbouncer:
+    image: crunchydata/crunchy-pgbouncer:centos7-9.6.6-1.7.0
+    links:
+      - "postgres:db"
+    volumes:
+      - "./bouncerconfig:/pgconf/bouncerconfig"
 
   postgres:
     image: centos/postgresql-96-centos7:9.6
