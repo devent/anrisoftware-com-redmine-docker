@@ -7,8 +7,17 @@ services:
     ports:
       - 3000:3000
     environment:
-      DEBUG: "true"
+      REDMINE_DB_POSTGRES: "db"
+      REDMINE_DB_USERNAME: "anrisprojects"
+      REDMINE_DB_DATABASE: "anrisprojects"
+      REDMINE_DB_PASSWORD: "WohCh4co0waorees9nechaezuagoz4ai"
       REDMINE_PLUGINS_MIGRATE: "true"
+      PIWIK_ID_SITE: "2"
+      PIWIK_URL: "piwik"
+      PIWIK_USE_ASYNC: "true"
+      PIWIK_DISABLED: "false"
+      REDMINE_PLUGINS_MIGRATE: "true"
+      DEBUG: "true"
     links:
       - "pgbouncer:db"
     volumes:
@@ -16,19 +25,21 @@ services:
       - "./redmine-in:/redmine-in"
 
   pgbouncer:
-    image: crunchydata/crunchy-pgbouncer:centos7-9.6.6-1.7.0
+    image: crunchydata/crunchy-pgbouncer:centos7-10.3-1.8.2
+    environment:
+      POSTGRESQL_USER: "anrisprojects"
+      POSTGRESQL_PASSWORD: "WohCh4co0waorees9nechaezuagoz4ai"
+      POSTGRESQL_DATABASE: "anrisprojects"
     links:
       - "postgres:db"
     volumes:
       - "./bouncerconfig:/pgconf/bouncerconfig"
 
   postgres:
-    image: centos/postgresql-96-centos7:9.6
+    image: bitnami/postgresql:10.3.0-r23
     environment:
-      PGCTLTIMEOUT: "300"
-      POSTGRESQL_USER: "anrisprojects"
+      POSTGRESQL_USERNAME: "anrisprojects"
       POSTGRESQL_PASSWORD: "WohCh4co0waorees9nechaezuagoz4ai"
       POSTGRESQL_DATABASE: "anrisprojects"
-      POSTGRESQL_ADMIN_PASSWORD: "yae2eij0mahyeekiochoebaishieCohZ"
     volumes:
-      - "./root/db:/var/lib/pgsql/data"
+      - "./root/db:/bitnami"
