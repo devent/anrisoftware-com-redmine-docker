@@ -16,21 +16,27 @@ rm: stop ##@targets Stops test containers.
 clean: stop rm ##@targets Removes docker containers and created files.
 	sudo rm -rf root
 
-clean-redmine: stop ##@targets Removes docker containers and created files.
-	docker-compose -p $(NAME) -f test.yaml rm -f redmine
+clean-redmine: rm ##@targets Removes docker containers and created files.
 	sudo rm -rf root/html root/bundle
+
+clean-db: rm ##@targets Removes docker containers and created files.
+	sudo rm -rf root/db
 
 setup:
 	for p in html db; do \
 	mkdir -p root/$$p; \
-	chmod o+rwX root/$$p ; \
+	sudo chmod o+rwX root/$$p ; \
 	done
-	if [ -d "root/db/userdata" ]; then \
-	sudo chown 26.26 -R "root/db/userdata"; \
-	sudo chmod u=rwX-s,g=-s,o-s -R "root/db/userdata"; \
-	fi
 	if [ -d "root/html" ]; then \
 	sudo chown 999.999 -R "root/html"; \
 	sudo chmod u=rwX-s,g=-s,o-s -R "root/html"; \
+	fi
+	if [ -d "root/db" ]; then \
+	sudo chown 0.0 -R "root/db"; \
+	sudo chmod u=rwX-s,g=rX,o=rX -R "root/db"; \
+	if [ -d "root/db/postgresql/data" ]; then \
+	sudo chown 1001.0 -R "root/db/postgresql/data"; \
+	sudo chmod u=rwX,g=,o= -R "root/db/postgresql/data"; \
+	fi \
 	fi
 .PHONY: setup

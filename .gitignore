@@ -5,3 +5,4 @@ tmp/**
 image/rootfs/usr/local/bundle/**
 test/bundle.dist/**
 postgres
+*/upgrade/**

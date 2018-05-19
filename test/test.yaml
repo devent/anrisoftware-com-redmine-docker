@@ -36,10 +36,6 @@ services:
       - "./bouncerconfig:/pgconf/bouncerconfig"
 
   postgres:
-    image: bitnami/postgresql:10.3.0-r23
-    environment:
-      POSTGRESQL_USERNAME: "anrisprojects"
-      POSTGRESQL_PASSWORD: "WohCh4co0waorees9nechaezuagoz4ai"
-      POSTGRESQL_DATABASE: "anrisprojects"
+    image: postgres:10.3
     volumes:
-      - "./root/db:/bitnami"
+      - "./root/db/postgresql/data:/var/lib/postgresql/data"
