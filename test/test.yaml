@@ -25,7 +25,7 @@ services:
       - "./redmine-in:/redmine-in"
 
   pgbouncer:
-    image: crunchydata/crunchy-pgbouncer:centos7-10.3-1.8.2
+    image: crunchydata/crunchy-pgbouncer:centos7-10.7-2.3.1
     environment:
       POSTGRESQL_USER: "anrisprojects"
       POSTGRESQL_PASSWORD: "WohCh4co0waorees9nechaezuagoz4ai"
@@ -33,9 +33,13 @@ services:
     links:
       - "postgres:db"
     volumes:
-      - "./bouncerconfig:/pgconf/bouncerconfig"
+      - "./bouncerconfig:/pgconf"
 
   postgres:
-    image: postgres:10.3
+    image: bitnami/postgresql:10.7.0
+    #environment:
+      #POSTGRES_USER: "anrisprojects"
+      #POSTGRES_PASSWORD: "WohCh4co0waorees9nechaezuagoz4ai"
+      #POSTGRES_DB: "anrisprojects"
     volumes:
-      - "./root/db/postgresql/data:/var/lib/postgresql/data"
+      - "./root/db:/bitnami"
