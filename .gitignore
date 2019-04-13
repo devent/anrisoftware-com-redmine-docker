@@ -6,3 +6,5 @@ image/rootfs/usr/local/bundle/**
 test/bundle.dist/**
 postgres
 */upgrade/**
+anrisprojects.bak
+redmine_html
