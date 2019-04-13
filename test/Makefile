@@ -1,7 +1,7 @@
 include ../utils/Makefile.help
 include ../utils/Makefile.functions
 
-NAME := anri-redmine
+NAME := anriredmine
 
 test: setup ##@targets Starts test containers.
 	docker-compose -p $(NAME) -f test.yaml up
@@ -16,21 +16,22 @@ rm: stop ##@targets Stops test containers.
 clean: stop rm ##@targets Removes docker containers and created files.
 	sudo rm -rf root
 
-clean-redmine: stop ##@targets Removes docker containers and created files.
-	docker-compose -p $(NAME) -f test.yaml rm -f redmine
+clean-redmine: rm ##@targets Removes docker containers and created files.
 	sudo rm -rf root/html root/bundle
+
+clean-db: rm ##@targets Removes docker containers and created files.
+	sudo rm -rf root/db
 
 setup:
 	for p in html db; do \
 	mkdir -p root/$$p; \
-	chmod o+rwX root/$$p ; \
+	sudo chmod o+rwX root/$$p ; \
 	done
-	if [ -d "root/db/userdata" ]; then \
-	sudo chown 26.26 -R "root/db/userdata"; \
-	sudo chmod u=rwX-s,g=-s,o-s -R "root/db/userdata"; \
-	fi
 	if [ -d "root/html" ]; then \
 	sudo chown 999.999 -R "root/html"; \
 	sudo chmod u=rwX-s,g=-s,o-s -R "root/html"; \
+	fi
+	if [ -d "root/db" ]; then \
+	sudo chmod u=rwX-s,g=rwX,o=rwX -R "root/db"; \
 	fi
 .PHONY: setup

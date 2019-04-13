@@ -1,52 +1,53 @@
-FROM robobeerun/redmine:v3.4.5-puma-r1
+FROM robobeerun/redmine:v4.0.2-puma-r1
 LABEL maintainer "Erwin Mueller <erwin.mueller@deventm.com>"
 
 # https://www.redmineup.com/pages/plugins/agile
 RUN set -x \
-  && src="https://www.dropbox.com/s/ffqnwnler0y3gl1/redmine_agile-1_4_6-light.zip?dl=0" \
-  && hash="12b6ebda7b0c74daac32a8f27778b798a9296eba62eca01a44e868117ea3621e" \
+  && src="https://www.dropbox.com/s/ftiz7dnhsfxffke/redmine_agile-1_4_8-light.zip?dl=0" \
+  && hash="37609d619e3dc119d49f5bb683f868d6c4a4d98597b275b78f585c98e374b9d0" \
   && name="redmine_agile" \
   && /install-redmine-plugin.sh "$src" "$name" "$hash" downloadOnly
 
 # https://www.redmineup.com/pages/plugins/questions
-RUN set -x \
-  && src="https://www.dropbox.com/s/loi1combeh4io1n/redmine_questions-0_0_7-light.zip?dl=0" \
-  && hash="b968633076037a8cb727997eec69a28919838fa49c99fe0fdc6ed2f4a6fe138c" \
-  && name="redmine_questions" \
-  && /install-redmine-plugin.sh "$src" "$name" "$hash" downloadOnly
+#RUN set -x \
+#  && src="https://www.dropbox.com/s/f5kkj6mrjhbk9er/redmine_questions-1_0_0-light.zip?dl=0" \
+#  && hash="ef7500869e4923ce4305c50984cdc3d5b1564922e7df01d4b56ad165e3a43d10" \
+#  && name="redmine_questions" \
+#  && /install-redmine-plugin.sh "$src" "$name" "$hash" downloadOnly
 
 # https://www.redmineup.com/pages/plugins/checklists
 RUN set -x \
-  && src="https://www.dropbox.com/s/7lp0wtieua9avm7/redmine_checklists-3_1_11-light.zip?dl=0" \
-  && hash="df1e75401b4440ddccb0076ef9aa43d788ce04d06a6ae60d54001d4cfca00231" \
+  && src="https://www.dropbox.com/s/87bxvjyemi3fm5j/redmine_checklists-3_1_14-light.zip?dl=0" \
+  && hash="16a1e2f9aed676958995114ad235a24a3076b34d54620960eaec6a6756c36e43" \
   && name="redmine_checklists" \
   && /install-redmine-plugin.sh "$src" "$name" "$hash" downloadOnly
 
 # https://www.redmineup.com/pages/plugins/favorite-projects
-RUN set -x \
-  && src="https://www.dropbox.com/s/dk6ximxf7ov84nb/redmine_favorite_projects-2_0_3-light.zip?dl=0" \
-  && hash="54f7c7f7964660b9ba5750651dff8aa109a509ee548d5c0d0fdadc05914ff7ef" \
-  && name="redmine_favorite_projects" \
-  && /install-redmine-plugin.sh "$src" "$name" "$hash" downloadOnly
+#RUN set -x \
+#  && src="https://www.dropbox.com/s/dk6ximxf7ov84nb/redmine_favorite_projects-2_0_3-light.zip?dl=0" \
+#  && hash="54f7c7f7964660b9ba5750651dff8aa109a509ee548d5c0d0fdadc05914ff7ef" \
+#  && name="redmine_favorite_projects" \
+#  && /install-redmine-plugin.sh "$src" "$name" "$hash" downloadOnly
 
 # https://www.redmineup.com/pages/plugins/zenedit
 RUN set -x \
-  && src="https://www.dropbox.com/s/id4i3kwdtl51y8s/redmine_zenedit-0_0_3-light.zip?dl=0" \
-  && hash="c31dd6b3eed727fe38b28fa20be97670fcb4bbf968e9e95e24f6e0451a41e1d4" \
+  && src="https://www.dropbox.com/s/gshi4hcmld3e1in/redmine_zenedit-1_0_2-light.zip?dl=0" \
+  && hash="123cda6cf32969f9222cdd18df936db60869f51c2259431d08b90c90b4be13db" \
   && name="redmine_zenedit" \
   && /install-redmine-plugin.sh "$src" "$name" "$hash" downloadOnly
 
 # https://www.redmineup.com/pages/plugins/people
 RUN set -x \
-  && src="https://www.dropbox.com/s/klxi6tqhxjy7vxw/redmine_people-1_3_2-light.zip?dl=0" \
-  && hash="45a251fbb0cb492e8c3e191e50678cdd337e9de92b719ff1735f71697cbcff55" \
+  && src="https://www.dropbox.com/s/uxvt9qo44gxpevs/redmine_people-1_4_0-light.zip?dl=0" \
+  && hash="5792af5e789417dd002bc5144eca0bc0e50b0d3693dfd86da91f7c328c8612e5" \
   && name="redmine_people" \
   && /install-redmine-plugin.sh "$src" "$name" "$hash" downloadOnly
 
+# https://www.redmineup.com/pages/themes/coffee
 RUN set -x \
   && src="https://www.dropbox.com/s/izngtjmvo1nn22b/coffee_theme-0_0_4.zip?dl=0" \
   && hash="854e164b390e7f0731566556c9abec317476d47ff86b9cb4754b2f28df35257f" \
-  && name="circle_theme" \
+  && name="coffee_theme" \
   && /install-redmine-theme.sh "$src" "$name" "$hash" downloadOnly
 
 # https://www.redmineup.com/pages/themes/circle
