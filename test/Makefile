@@ -1,7 +1,7 @@
 include ../utils/Makefile.help
 include ../utils/Makefile.functions
 
-NAME := anri-redmine
+NAME := anriredmine
 
 test: setup ##@targets Starts test containers.
 	docker-compose -p $(NAME) -f test.yaml up
@@ -32,11 +32,6 @@ setup:
 	sudo chmod u=rwX-s,g=-s,o-s -R "root/html"; \
 	fi
 	if [ -d "root/db" ]; then \
-	sudo chown 0.0 -R "root/db"; \
-	sudo chmod u=rwX-s,g=rX,o=rX -R "root/db"; \
-	if [ -d "root/db/postgresql/data" ]; then \
-	sudo chown 1001.0 -R "root/db/postgresql/data"; \
-	sudo chmod u=rwX,g=,o= -R "root/db/postgresql/data"; \
-	fi \
+	sudo chmod u=rwX-s,g=rwX,o=rwX -R "root/db"; \
 	fi
 .PHONY: setup
