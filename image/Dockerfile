@@ -1,4 +1,4 @@
-FROM robobeerun/redmine:v4.0.2-puma-r1
+FROM robobeerun/redmine:v4.0.3-puma-r.1
 LABEL maintainer "Erwin Mueller <erwin.mueller@deventm.com>"
 
 # https://www.redmineup.com/pages/plugins/agile

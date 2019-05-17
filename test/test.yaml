@@ -12,11 +12,6 @@ services:
       REDMINE_DB_DATABASE: "anrisprojects"
       REDMINE_DB_PASSWORD: "WohCh4co0waorees9nechaezuagoz4ai"
       REDMINE_PLUGINS_MIGRATE: "true"
-      PIWIK_ID_SITE: "2"
-      PIWIK_URL: "piwik"
-      PIWIK_USE_ASYNC: "true"
-      PIWIK_DISABLED: "false"
-      REDMINE_PLUGINS_MIGRATE: "true"
       DEBUG: "true"
     links:
       - "pgbouncer:db"
@@ -37,9 +32,9 @@ services:
 
   postgres:
     image: bitnami/postgresql:10.7.0
-    #environment:
-      #POSTGRES_USER: "anrisprojects"
-      #POSTGRES_PASSWORD: "WohCh4co0waorees9nechaezuagoz4ai"
-      #POSTGRES_DB: "anrisprojects"
+    environment:
+      POSTGRES_USER: "anrisprojects"
+      POSTGRES_PASSWORD: "WohCh4co0waorees9nechaezuagoz4ai"
+      POSTGRES_DB: "anrisprojects"
     volumes:
       - "./root/db:/bitnami"
