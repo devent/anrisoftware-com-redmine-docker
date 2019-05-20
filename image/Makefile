@@ -1,6 +1,6 @@
 REPOSITORY := erwin82
 NAME := redmine
-VERSION ?= v4.0.2-puma-r1
+VERSION ?= v4.0.3-puma-r.1
 
 .PHONY: build
 build: _build ##@targets Builds the docker image.
