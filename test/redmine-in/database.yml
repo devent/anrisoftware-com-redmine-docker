@@ -6,4 +6,4 @@ production:
   username: anrisprojects
   password: "WohCh4co0waorees9nechaezuagoz4ai"
   encoding: utf8
-  schema_search_path: public
+  schema_search_path: anrisprojects

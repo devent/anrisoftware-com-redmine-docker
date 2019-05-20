@@ -2,11 +2,12 @@ FROM robobeerun/redmine:v4.0.3-puma-r.1
 LABEL maintainer "Erwin Mueller <erwin.mueller@deventm.com>"
 
 # https://www.redmineup.com/pages/plugins/agile
-RUN set -x \
-  && src="https://www.dropbox.com/s/ftiz7dnhsfxffke/redmine_agile-1_4_8-light.zip?dl=0" \
-  && hash="37609d619e3dc119d49f5bb683f868d6c4a4d98597b275b78f585c98e374b9d0" \
-  && name="redmine_agile" \
-  && /install-redmine-plugin.sh "$src" "$name" "$hash" downloadOnly
+# See bug https://www.redmineup.com/questions/216-agile-plugin-not-working
+#RUN set -x \
+#  && src="https://www.dropbox.com/s/30dithl5s9tdg3g/redmine_agile-1_4_10-light.zip?dl=0" \
+#  && hash="6701d8435de311bba8b504df0af3e9bd60533e9ea43b41f32934a507b23ef09f" \
+#  && name="redmine_agile" \
+#  && /install-redmine-plugin.sh "$src" "$name" "$hash" downloadOnly
 
 # https://www.redmineup.com/pages/plugins/questions
 #RUN set -x \
@@ -17,8 +18,8 @@ RUN set -x \
 
 # https://www.redmineup.com/pages/plugins/checklists
 RUN set -x \
-  && src="https://www.dropbox.com/s/87bxvjyemi3fm5j/redmine_checklists-3_1_14-light.zip?dl=0" \
-  && hash="16a1e2f9aed676958995114ad235a24a3076b34d54620960eaec6a6756c36e43" \
+  && src="https://www.dropbox.com/s/dzo3mmgm88gefmd/redmine_checklists-3_1_16-light.zip?dl=0" \
+  && hash="af30b154797b82e86809d4c27a5a3d5d4565a25e86a675d0970caa5b6d0b93d0" \
   && name="redmine_checklists" \
   && /install-redmine-plugin.sh "$src" "$name" "$hash" downloadOnly
 

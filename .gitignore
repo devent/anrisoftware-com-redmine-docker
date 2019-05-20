@@ -8,3 +8,4 @@ postgres
 */upgrade/**
 anrisprojects.bak
 redmine_html
+backup/**
