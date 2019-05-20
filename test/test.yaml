@@ -2,22 +2,22 @@ version: '3.1'
 
 services:
 
-  #redmine:
-    #image: erwin82/redmine:latest
-    #ports:
-      #- 3000:3000
-    #environment:
-      #REDMINE_DB_POSTGRES: "db"
-      #REDMINE_DB_USERNAME: "anrisprojects"
-      #REDMINE_DB_DATABASE: "anrisprojects"
-      #REDMINE_DB_PASSWORD: "WohCh4co0waorees9nechaezuagoz4ai"
-      #REDMINE_PLUGINS_MIGRATE: "true"
-      #DEBUG: "true"
-    #links:
-      #- "pgbouncer:db"
-    #volumes:
-      #- "./root/html:/var/www/html"
-      #- "./redmine-in:/redmine-in"
+  redmine:
+    image: erwin82/redmine:latest
+    ports:
+      - 3000:3000
+    environment:
+      REDMINE_DB_POSTGRES: "db"
+      REDMINE_DB_USERNAME: "anrisprojects"
+      REDMINE_DB_DATABASE: "anrisprojects"
+      REDMINE_DB_PASSWORD: "WohCh4co0waorees9nechaezuagoz4ai"
+      REDMINE_PLUGINS_MIGRATE: "true"
+      DEBUG: "true"
+    links:
+      - "pgbouncer:db"
+    volumes:
+      - "./root/html:/var/www/html"
+      - "./redmine-in:/redmine-in"
 
   pgbouncer:
     image: crunchydata/crunchy-pgbouncer:centos7-10.7-2.3.1
